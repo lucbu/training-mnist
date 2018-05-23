@@ -1,12 +1,11 @@
 const fs = require('fs');
-const visualize = require("./visualize.js");
-const dataReader = require("./dataReader.js");
-const training = require("./training.js");
-const benchmark = require("./benchmark.js");
-const testing = require("./testing.js");
+const visualize = require("./src/visualize.js");
+const dataReader = require("./src/dataReader.js");
+const training = require("./src/training.js");
+const benchmark = require("./src/benchmark.js");
+const testing = require("./src/testing.js");
 
 var __dirnameData = 'data';
-var __dirnameResult = 'result';
 
 var dataBuffer  = fs.readFileSync(__dirnameData + '/train-images-idx3-ubyte');
 var labelBuffer = fs.readFileSync(__dirnameData + '/train-labels-idx1-ubyte');
