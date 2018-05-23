@@ -1,11 +1,16 @@
 const dataReader = require("../dataReader.js");
 
-var potentiality = function (dataToTest, trainingResult){
+var potentiality = function (opts, dataToTest, trainingResult){
   var delta = Math.abs(trainingResult - dataToTest);
+  if(delta > opts.treshold) {
+    delta = 1;
+  }
   return 1-delta;
 }
 
-var makeSortedGuess = function (data, trainingResult) {
+var makeSortedGuess = function (opts, data, trainingResult) {
+  opts = Object.assign({treshold: 1}, opts);
+
   var dataNbRows = data.length;
   var dataNbCols = data[0].length;
 
@@ -22,7 +27,7 @@ var makeSortedGuess = function (data, trainingResult) {
     var row = [];
     for(var j = 0; j < dataNbCols; j++) {
       for(var n = 0; n <= 9; n++){
-        var pot = potentiality((data[i][j]), trainingResult[n]['data'][i][j]);
+        var pot = potentiality(opts, (data[i][j]), trainingResult[n]['data'][i][j]);
         pointsByLabel[n] += pot;
       }
     }

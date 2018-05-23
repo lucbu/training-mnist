@@ -1,6 +1,7 @@
 const dataReader = require("../dataReader.js");
 
-var regroupDataByLabel = function (treshold, offset, length, dataBuffer, labelBuffer) {
+var regroupDataByLabel = function (opts, offset, length, dataBuffer, labelBuffer) {
+  opts = Object.assign({treshold: 0}, opts);
 
   var dataNbRows = dataReader.getCountRows(dataBuffer);
   var dataNbCols = dataReader.getCountCols(dataBuffer);
@@ -32,7 +33,7 @@ var regroupDataByLabel = function (treshold, offset, length, dataBuffer, labelBu
 
         var current = regroupedDataByLabel[label]['data'][i][j];
 
-        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + (data[i][j] > treshold ? (data[i][j]) : 0))/nb;
+        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + (data[i][j] > opts.treshold ? (data[i][j]) : 0))/nb;
 
       }
     }

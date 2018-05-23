@@ -18,12 +18,13 @@ var trainDataLength = dataReader.getDataLength(trainDataBuffer);
 
 // LEARNING
 console.log('LEARNING (' + dataLength + ')')
-var treshold = 0.75;
-var trainingResult = training.regroupDataByLabel(treshold, 0, dataLength, dataBuffer, labelBuffer);
+var trainingOpts = {treshold: 0.75};
+var trainingResult = training.regroupDataByLabel(trainingOpts, 0, dataLength, dataBuffer, labelBuffer);
 
 // TESTING
 console.log('TESTING  (' + trainDataLength + ')')
-var benchmarkResult = benchmark.benchmark(testing.makeSortedGuess, trainingResult, 0, trainDataLength, trainDataBuffer, trainLabelBuffer);
+var testingOpts = {treshold: 0.75};
+var benchmarkResult = benchmark.benchmark(testing.makeSortedGuess, testingOpts, trainingResult, 0, trainDataLength, trainDataBuffer, trainLabelBuffer);
 
 console.log()
 console.log('Result by number of tries :')
