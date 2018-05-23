@@ -1,7 +1,7 @@
 const fs = require('fs');
 const dataReader = require("./src/dataReader.js");
-const training = require("./src/training.js");
-const testing = require("./src/testing.js");
+const training = require("./src/training/average.js");
+const testing = require("./src/testing/delta.js");
 const benchmark = require("./src/benchmark.js");
 
 var __dirnameData = 'data';

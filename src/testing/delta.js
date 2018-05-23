@@ -1,4 +1,4 @@
-const dataReader = require("./dataReader.js");
+const dataReader = require("../dataReader.js");
 
 var color = {min: 0, max: 255}
 

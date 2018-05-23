@@ -1,4 +1,4 @@
-const dataReader = require("./dataReader.js");
+const dataReader = require("../dataReader.js");
 
 var regroupDataByLabel = function (offset, length, dataBuffer, labelBuffer) {
 
