@@ -9,7 +9,7 @@ var benchmark = function (guessSortedFunction, regroupedDataByLabel, offset, len
     var guessSortedLabel = guessSortedFunction(picToGuess, regroupedDataByLabel);
     result.guessMake++;
     for(var j = 1; j <= 10; j++) {
-      result.okByTry[j] = result.okByTry[j] + (guessSortedLabel.slice(0, j).includes(actualLabel.toString()) ? 1 : 0);
+      result.okByTry[j] = result.okByTry[j] + (guessSortedLabel.sortedLabels.slice(0, j).includes(actualLabel.toString()) ? 1 : 0);
     }
   }
   return result;

@@ -1,8 +1,10 @@
 const fs = require('fs');
 const dataReader = require("./src/dataReader.js");
-const training = require("./src/training/treshold.js");
+const training = require("./src/training/avgTreshold.js");
 const testing = require("./src/testing/delta.js");
 const benchmark = require("./src/benchmark.js");
+
+const visualize = require("./src/visualize.js");
 
 var __dirnameData = 'data';
 
@@ -16,13 +18,13 @@ var trainDataLength = dataReader.getDataLength(trainDataBuffer);
 
 // LEARNING
 console.log('LEARNING (' + dataLength + ')')
-var treshold = 180;
+var treshold = 0.75;
 var regroupedDataByLabel = training.regroupDataByLabel(treshold, 0, dataLength, dataBuffer, labelBuffer);
 
 // TESTING
 console.log('TESTING  (' + trainDataLength + ')')
-
 var benchmarkResult = benchmark.benchmark(testing.makeSortedGuess, regroupedDataByLabel, 0, trainDataLength, trainDataBuffer, trainLabelBuffer);
+
 console.log()
 console.log('Result by number of tries :')
 for(var i = 1; i <= Object.keys(benchmarkResult.okByTry).length; i++) {

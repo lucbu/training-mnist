@@ -17,7 +17,7 @@ var getDataByRows = function (index, dataBuffer){
     for(var i = 0; i < cntRows; i++){
       var row = [];
       for(var j = 0; j < cntCols; j ++) {
-        row.push(dataBuffer[dataOffset+(index*cntPixels)+(i*cntCols)+j])
+        row.push(dataBuffer[dataOffset+(index*cntPixels)+(i*cntCols)+j]/255)
       }
       rows.push(row);
     }

@@ -32,12 +32,11 @@ var regroupDataByLabel = function (offset, length, dataBuffer, labelBuffer) {
 
         var current = regroupedDataByLabel[label]['data'][i][j];
 
-        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + data[i][j])/nb;
+        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + (data[i][j]))/nb;
 
       }
     }
   }
-
   return regroupedDataByLabel;
 }
 

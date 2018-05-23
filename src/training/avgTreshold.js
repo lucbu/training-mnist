@@ -32,7 +32,7 @@ var regroupDataByLabel = function (treshold, offset, length, dataBuffer, labelBu
 
         var current = regroupedDataByLabel[label]['data'][i][j];
 
-        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + (data[i][j] > treshold ? data[i][j] : 0))/nb;
+        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + (data[i][j] > treshold ? (data[i][j]) : 0))/nb;
 
       }
     }

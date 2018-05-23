@@ -2,13 +2,16 @@ const PImage = require('pureimage');
 const fs = require('fs');
 
 // WRITE WITH ASCII IN TERM
-var writeData = function (data) {
+var writeData = function (data, treshold) {
+  if(typeof treshold == 'undefined') {
+    treshold = 0;
+  }
   var rows = data;
   for(var i = 0; i < rows.length; i++){
     var row = rows[i];
     var line = '';
     for(var j = 0; j < row.length; j ++) {
-      line = line + (row[j] > 0 ? '@' : '.');
+      line = line + (row[j] > treshold ? '@' : '.');
     }
     console.log(line)
   }
@@ -27,7 +30,7 @@ var createImage = function (data, path) {
   for(var i = 0; i < rows.length; i++){
     var row = rows[i];
     for(var j = 0; j < row.length; j ++) {
-      var transparency = (row[j]/255)
+      var transparency = (row[j])
       ctx.fillStyle = 'rgba(0,0,0,' + transparency + ')';
       ctx.fillRect(j,i,1,1);
     }

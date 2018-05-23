@@ -1,10 +1,8 @@
 const dataReader = require("../dataReader.js");
 
-var color = {min: 0, max: 255}
-
 var potentiality = function (dataToTest, dataRegrouped){
   var delta = Math.abs(dataRegrouped - dataToTest);
-  return color.max - delta;
+  return 1-delta;
 }
 
 var makeSortedGuess = function (data, dataRegroupedByLabel) {
@@ -24,14 +22,21 @@ var makeSortedGuess = function (data, dataRegroupedByLabel) {
     var row = [];
     for(var j = 0; j < dataNbCols; j++) {
       for(var n = 0; n <= 9; n++){
-        pointsByLabel[n] += potentiality(data[i][j], dataRegroupedByLabel[n]['data'][i][j]);
+        var pot = potentiality((data[i][j]), dataRegroupedByLabel[n]['data'][i][j]);
+        pointsByLabel[n] += pot;
       }
     }
   }
 
+  for(var n = 0; n <= 9; n++){
+    pointsByLabel[n] = pointsByLabel[n]/(dataNbRows*dataNbCols);
+  }
+
   var sortedLabels = Object.keys(pointsByLabel).sort(function(a,b){return pointsByLabel[b]-pointsByLabel[a]});
 
-  return sortedLabels;
+  var sortedGuess = {sortedLabels: sortedLabels, ponderatedLabels: pointsByLabel}
+
+  return sortedGuess;
 }
 
 var makeGuess = function (data, dataRegroupedByLabel) {
