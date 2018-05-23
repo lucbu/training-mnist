@@ -1,9 +1,8 @@
 const fs = require('fs');
-const visualize = require("./src/visualize.js");
 const dataReader = require("./src/dataReader.js");
 const training = require("./src/training.js");
-const benchmark = require("./src/benchmark.js");
 const testing = require("./src/testing.js");
+const benchmark = require("./src/benchmark.js");
 
 var __dirnameData = 'data';
 
