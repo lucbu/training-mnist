@@ -2,14 +2,16 @@ const dataReader = require("../dataReader.js");
 
 var potentiality = function (opts, dataToTest, trainingResult){
   var delta = Math.abs(trainingResult - dataToTest);
-  if(delta > opts.treshold) {
+  if (delta > opts.upTreshold) {
     delta = 1;
+  } else if(delta < opts.downTreshold) {
+    delta = 0;
   }
   return 1-delta;
 }
 
 var makeSortedGuess = function (opts, data, trainingResult) {
-  opts = Object.assign({treshold: 1}, opts);
+  opts = Object.assign({downTreshold: 0, upTreshold: 1}, opts);
 
   var dataNbRows = data.length;
   var dataNbCols = data[0].length;

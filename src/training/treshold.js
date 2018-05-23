@@ -1,6 +1,7 @@
 const dataReader = require("../dataReader.js");
 
-var regroupDataByLabel = function (treshold, offset, length, dataBuffer, labelBuffer) {
+var train = function (opts, offset, length, dataBuffer, labelBuffer) {
+  opts = Object.assign({treshold: 0.5}, opts);
 
   var dataNbRows = dataReader.getCountRows(dataBuffer);
   var dataNbCols = dataReader.getCountCols(dataBuffer);
@@ -31,8 +32,12 @@ var regroupDataByLabel = function (treshold, offset, length, dataBuffer, labelBu
       for(var j = 0; j < dataNbCols; j++) {
 
         var current = regroupedDataByLabel[label]['data'][i][j];
+        var iterate = 0;
+        if(data[i][j] > opts.treshold) {
+          iterate = 1
+        }
 
-        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + (data[i][j] > treshold ? 1 : 0))/nb;
+        regroupedDataByLabel[label]['data'][i][j] = (current*(nb-1) + iterate)/nb;
 
       }
     }
@@ -42,6 +47,6 @@ var regroupDataByLabel = function (treshold, offset, length, dataBuffer, labelBu
 }
 
 module.exports = {
-  regroupDataByLabel: regroupDataByLabel
+  train: train
 };
 return module.exports;
