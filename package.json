@@ -1,0 +1,14 @@
+{
+  "name": "training-mnist",
+  "version": "1.0.0",
+  "description": "mnist training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lucbu",
+  "license": "ISC",
+  "dependencies": {
+    "pureimage": "^0.1.6"
+  }
+}
