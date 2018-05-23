@@ -1,6 +1,6 @@
 const fs = require('fs');
 const dataReader = require("./src/dataReader.js");
-const training = require("./src/training/average.js");
+const training = require("./src/training/treshold.js");
 const testing = require("./src/testing/delta.js");
 const benchmark = require("./src/benchmark.js");
 
@@ -16,7 +16,8 @@ var trainDataLength = dataReader.getDataLength(trainDataBuffer);
 
 // LEARNING
 console.log('LEARNING (' + dataLength + ')')
-var regroupedDataByLabel = training.regroupDataByLabel(0, dataLength, dataBuffer, labelBuffer);
+var treshold = 180;
+var regroupedDataByLabel = training.regroupDataByLabel(treshold, 0, dataLength, dataBuffer, labelBuffer);
 
 // TESTING
 console.log('TESTING  (' + trainDataLength + ')')
